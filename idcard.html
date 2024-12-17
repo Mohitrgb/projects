@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Card Design</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Card Container */
+        .id-card {
+            width: 300px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            overflow: hidden;
+            border: 2px solid #007BFF; /* Primary Border */
+        }
+
+        /* Card Header */
+        .id-header {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 15px 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Profile Picture */
+        .profile {
+            margin-top: 15px;
+        }
+
+        .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #007BFF;
+            object-fit: cover;
+        }
+
+        /* Card Details */
+        .details {
+            margin: 15px 10px;
+        }
+
+        .details h2 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .details p {
+            font-size: 1rem;
+            color: #555;
+            margin: 5px 0;
+        }
+
+        .details .designation {
+            font-size: 1.1rem;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #555;
+            padding-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+        }
+
+        .contact-info i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ID Card -->
+    <div class="id-card">
+        <!-- Header -->
+        <div class="id-header">
+            STUDENT ID CARD
+        </div>
+
+        <!-- Profile Image -->
+        <div class="profile">
+            <img src="./MOHIT .jpg" alt="Profile Photo">
+        </div>
+
+        <!-- Personal Details -->
+        <div class="details">
+            <h2>Mohit Singh</h2>
+            <p class="designation">Student</p>
+            <p>Roll No: 22cpdxx626</p>
+            <p>Department: Computer Science</p>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info">
+            <p><i class="fas fa-phone"></i>+918504995140</p>
+            <p><i class="fas fa-envelope"></i> mohitsinghsolanki12@gmail.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> Jaipur, Rajasthan</p>
+        </div>
+    </div>
+
+    <!-- FontAwesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

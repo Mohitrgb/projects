@@ -5,6 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Indian & Italian Restaurant Menu</title>
     <style>
+    <!-- Add CSS for Modal -->
+<style>
+    /* Modal Styles */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        background-color: #fff;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 400px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-header {
+        font-size: 1.5rem;
+        color: #d35400;
+        margin-bottom: 15px;
+    }
+
+    .modal input,
+    .modal select {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .modal button {
+        background-color: #d35400;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .modal button:hover {
+        background-color: #e67e22;
+    }
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
         /* General Reset */
         * {
             margin: 0;
@@ -33,23 +101,51 @@
 
         /* Header */
         header {
-            background-color: #d35400;
+            background: linear-gradient(to right, #d35400, #f39c12);
             color: #fff;
             text-align: center;
-            padding: 20px 10px;
+            padding: 30px 10px;
         }
 
         header h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 10px;
         }
 
         header p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-style: italic;
         }
 
-        /* Menu Section */
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: url('https://source.unsplash.com/1200x600/?restaurant,food') no-repeat center/cover;
+            color: #fff;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero button {
+            padding: 10px 20px;
+            background-color: #d35400;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .hero button:hover {
+            background-color: #e67e22;
+        }
+
+        /* Menu Styling */
         .menu {
             padding: 20px;
         }
@@ -103,6 +199,12 @@
             font-size: 1rem;
         }
 
+        .menu-item-content .details {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            color: #666;
+        }
+
         .menu-item-content .price {
             font-size: 1.2rem;
             color: #d35400;
@@ -110,40 +212,34 @@
             margin-top: 10px;
         }
 
-        /* Beverages Section */
-        .beverages {
-            background-color: #f9f9f9;
-            padding: 20px;
-        }
-
-        .beverages h2 {
-            text-align: center;
-            color: #d35400;
-            margin-bottom: 20px;
-        }
-
-        .beverage-item {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .beverage-item img {
-            width: 200px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
-        .beverage-item h3 {
+        .menu-item-content button {
             margin-top: 10px;
-            font-size: 1.3rem;
-            color: #333;
+            padding: 8px 15px;
+            background-color: #d35400;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
         }
 
-        .beverage-item .price {
-            font-size: 1.1rem;
+        .menu-item-content button:hover {
+            background-color: #e67e22;
+        }
+/* Contact Section */
+.contact {
+            padding: 20px;
+            background: #f8f8f8;
+            text-align: center;
+        }
+
+        .contact h2 {
             color: #d35400;
-            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .contact p {
+            margin-bottom: 10px;
         }
 
         /* Footer */
@@ -151,87 +247,194 @@
             background-color: #333;
             color: #fff;
             text-align: center;
-            padding: 10px;
+            padding: 20px 10px;
             margin-top: 20px;
         }
+
+        footer .social-icons {
+            margin-top: 10px;
+        }
+
+        footer .social-icons a {
+            margin: 0 10px;
+            color: #d35400;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        footer .social-icons a:hover {
+            color: #e67e22;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-item {
+                width: 100%;
+            }
+        }
     </style>
+    <!-- Reserve a Table Button -->
+<section class="hero">
+    <h2>Welcome to Our Restaurant</h2>
+    <p>Delicious food made with love and passion.</p>
+    <button id="reserveBtn">Reserve a Table</button>
+</section>
+
+<!-- Modal for Reservation -->
+<div id="reserveModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-header">Reserve a Table</div>
+        <form>
+            <input type="text" placeholder="Your Name" required />
+            <input type="email" placeholder="Your Email" required />
+            <input type="tel" placeholder="Phone Number" required />
+            <input type="date" required />
+            <select required>
+                <option value="" disabled selected>Number of Guests</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5+">5+</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
 </head>
 <body>
     <div class="container">
         <!-- Header -->
         <header>
-            <h1>Delicious Indian & Italian Cuisine</h1>
+            <h1>Indian & Italian Cuisine</h1>
             <p>Experience the authentic taste of India and Italy!</p>
         </header>
 
-        <!-- Indian Menu Section -->
+        <!-- Hero Section -->
+        <section class="hero">
+            <h2>Welcome to Our Restaurant</h2>
+            <p>Delicious food made with love and passion.</p>
+            <button>Reserve a Table</button>
+        </section>
+
+        <!-- Menu Section -->
         <section class="menu">
-            <h2>Our Special Indian Menu</h2>
+            <h2>Our Menu</h2>
             <div class="menu-items">
+                <!-- Menu Item -->
                 <div class="menu-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDFjjnBRSbS3KfH6STLM6J753Mk86DSo5aDQ&s" alt="Butter Chicken">
+                    <img src="port/butter chicken.webp" alt="Butter Chicken">
                     <div class="menu-item-content">
                         <h3>Butter Chicken</h3>
                         <p>Creamy tomato-based curry with tender chicken pieces.</p>
+                        <div class="details">Non-Vegetarian | Medium Spicy</div>
                         <div class="price">₹ 350</div>
+                        <button>Order Now</button>
+                    </div>
+                </div>
+                <!-- New Food Items -->
+                <div class="menu-item">
+                    <img src="port/lasagna.jpg" alt="Lasagna">
+                    <div class="menu-item-content">
+                        <h3>Lasagna</h3>
+                        <p>Layered pasta with cheese, vegetables, and tomato sauce.</p>
+                        <div class="details">Vegetarian | Mild</div>
+                        <div class="price">₹ 450</div>
+                        <button>Order Now</button>
                     </div>
                 </div>
                 <div class="menu-item">
-                    <img src="https://thumbs.dreamstime.com/b/easy-quick-paneer-tikka-culinary-journey-to-india-ai-created-content-design-background-instagram-facebook-wall-painting-324450957.jpg" alt="Paneer Tikka">
+                    <img src="port/paneer tikka.webp" alt="Paneer Tikka">
                     <div class="menu-item-content">
                         <h3>Paneer Tikka</h3>
-                        <p>Grilled cottage cheese marinated with spices.</p>
+                        <p>Marinated paneer cubes grilled to perfection.</p>
+                        <div class="details">Vegetarian | Spicy</div>
                         <div class="price">₹ 300</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Italian Foods Section -->
-        <section class="menu">
-            <h2>Italian Specials</h2>
-            <div class="menu-items">
-                <div class="menu-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNr7zUqgp12aK197H2CUHRibru1a7sM3RZKA&s" alt="Pizza Margherita">
-                    <div class="menu-item-content">
-                        <h3>Pizza Margherita</h3>
-                        <div class="price">₹ 400</div>
+                        <button>Order Now</button>
                     </div>
                 </div>
                 <div class="menu-item">
-                    <img src="https://static.vecteezy.com/system/resources/previews/037/814/455/non_2x/ai-generated-spaghetti-bolognese-with-parmesan-on-wooden-table-photo.jpg" alt="Spaghetti Bolognese">
+                    <img src="port/Tiramisu.jpg" alt="Tiramisu">
                     <div class="menu-item-content">
-                        <h3>Spaghetti Bolognese</h3>
+                        <h3>Tiramisu</h3>
+                        <p>Classic Italian coffee-flavored dessert.</p>
+                        <div class="details">Vegetarian | Sweet</div>
                         <div class="price">₹ 350</div>
+                        <button>Order Now</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="port/Pasta Alfredo.jpg" alt="Pasta Alfredo">
+                    <div class="menu-item-content">
+                        <h3>Pasta Alfredo</h3>
+                        <p>Creamy pasta with a rich Alfredo sauce.</p>
+                        <div class="details">Vegetarian | Mild</div>
+                        <div class="price">₹ 400</div>
+                        <button>Order Now</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Beverages Section -->
-        <section class="beverages">
+        <!-- Drinks Section -->
+        <section class="menu">
             <h2>Beverages</h2>
             <div class="menu-items">
                 <div class="menu-item">
-                    <img src="https://static.toiimg.com/photo/58360232.cms" alt="Lassi">
+                    <img src="port/mangolassi.jpg" alt="Mango Lassi">
                     <div class="menu-item-content">
-                        <h3>Lassi</h3>
-                        <div class="price">₹ 100</div>
+                        <h3>Mango Lassi</h3>
+                        <p>Sweet and creamy yogurt-based mango drink.</p>
+                        <div class="price">₹ 150</div>
+                        <button>Order Now</button>
                     </div>
                 </div>
                 <div class="menu-item">
-                    <img src="https://masalaandchai.com/wp-content/uploads/2021/07/Masala-Chai-Featured.jpg" alt="Masala Chai">
+                    <img src="port/red wine.jpg" alt="Red Wine">
+                    <div class="menu-item-content">
+                        <h3>Red Wine</h3>
+                        <p>Fine Italian red wine served chilled.</p>
+                        <div class="price">₹ 800</div>
+                        <button>Order Now</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="port/fruit mocktail.webp" alt="Mocktail">
+                    <div class="menu-item-content">
+                        <h3>Fruit Mocktail</h3>
+                        <p>Refreshing blend of seasonal fruits.</p>
+                        <div class="price">₹ 200</div>
+                        <button>Order Now</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="port/chai.webp" alt="Masala Chai">
                     <div class="menu-item-content">
                         <h3>Masala Chai</h3>
-                        <div class="price">₹ 50</div>
+                        <p>Spiced tea with rich Indian flavors.</p>
+                        <div class="price">₹ 100</div>
+                        <button>Order Now</button>
                     </div>
                 </div>
             </div>
+        <!-- Contact Section -->
+        <section class="contact">
+            <h2>Contact Us</h2>
+            <p>Address: 123 Food Street, pink city</p>
+            <p>Phone: +91 12345 67890</p>
+            <p>Working Hours: 11:00 AM - 11:00 PM</p>
         </section>
 
         <!-- Footer -->
         <footer>
             <p>&copy; 2024 Indian & Italian Spice Restaurant | All Rights Reserved</p>
+            <div class="social-icons">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+            </div>
         </footer>
     </div>
 </body>
